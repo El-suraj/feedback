@@ -6,7 +6,8 @@ import Time "mo:base/Time";
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
 import Int "mo:base/Int";
-import Option "mo:base/Option";
+// import Option "mo:base/Option";
+import Iter "mo:base/Iter";
 
 actor FeedbackCanister {
   // ========== TYPES ==========
@@ -55,7 +56,7 @@ actor FeedbackCanister {
   // ========== SYSTEM METHODS ==========
   system func preupgrade() {
     stableFeedbacks := feedbacks;
-    stableRateLimits := HashMap.toArray(rateLimits);
+    stableRateLimits := Iter.toArray(rateLimits.entries());
   };
 
   system func postupgrade() {
